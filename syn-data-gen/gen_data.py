@@ -1,4 +1,5 @@
 import json
+import pandas as pd
 import random
 import re
 import yaml
@@ -230,6 +231,32 @@ def generate_synth_data(size=10000, num_attr=5, human_goals=True):
         json.dump(data, outfile)
     ds_file = DATASET_PATH.split("/")[-1]
     print(f"Dataset written to {ds_file}")
+
+    # Convert data to `.csv` format for model input
+    df = pd.read_json(DATASET_PATH)
+    csv_lst = []
+    for i, row in df.iterrows():
+        text = row['name'] + " " + row['full_description'] + \
+            " ".join(row['BulletPoints'])
+        summary = " | ".join(row['Attributes'])
+        csv_lst.append([text, summary])
+
+    # Verify dataset is still same # of rows, train/valid/test split
+    assert(len(csv_lst)) == size
+    s1, s2 = int(size*0.8), int(size*0.9)
+    train, valid, test = csv_lst[:s1], csv_lst[s1:s2], csv_lst[s2:]
+
+    # Save to `.csv` files
+    path = "../data/attr_gen_dataset_"
+    for temp in [("train", train), ("valid", valid), ("test", test)]:
+        label, lst = temp[0], temp[1]
+        lst.insert(0, ["train", "summary"])
+        csv_df = pd.DataFrame(lst)
+
+        path_ = path + label + ".csv"
+        csv_df.to_csv(path_, index=False, header=False)
+        ds_csv_file = path_.split("/")[-1]
+        print(f"{label} dataset (csv) written to {ds_csv_file}")
 
 
 if __name__ == '__main__':
