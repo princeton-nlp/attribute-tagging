@@ -12,11 +12,14 @@ from rich import print
 
 BASE_DIR = dirname(abspath(__file__))
 ATTR_SCORE_PATH = join(BASE_DIR, '../data/attributes/broad_2-gram.yaml')
-DATASET_PATH = join(BASE_DIR, '../data/attr_gen_dataset.json')
+DATASET_PATH = join(BASE_DIR, '../data/attr-gen-data/attr_gen_dataset.json')
 DEFAULT_ATTR_PATH = join(BASE_DIR, '../data/items_ins_v2.json')
 DEFAULT_FILE_PATH = join(BASE_DIR, '../data/items_shuffle.json')
 DEFAULT_REVIEW_PATH = join(BASE_DIR, '../data/reviews.json')
 HUMAN_ATTR_PATH = join(BASE_DIR, '../data/items_human_ins.json')
+
+# Training Data Splits (Check Fine Tuning rate)
+SPLITS = [50, 200, 500, 2000, 5000]
 
 
 def generate_product_prices(all_products):
@@ -246,8 +249,8 @@ def generate_synth_data(size=10000, num_attr=5, human_goals=True):
     s1, s2 = int(size*0.8), int(size*0.9)
     train, valid, test = csv_lst[:s1], csv_lst[s1:s2], csv_lst[s2:]
 
-    # Save to `.csv` files
-    path = "../data/attr_gen_dataset_"
+    # Save full [train/test/valid] to `.csv` files
+    path = "../data/attr-gen-data/attr_gen_dataset_"
     for temp in [("train", train), ("valid", valid), ("test", test)]:
         label, lst = temp[0], temp[1]
         lst.insert(0, ["train", "summary"])
@@ -257,6 +260,17 @@ def generate_synth_data(size=10000, num_attr=5, human_goals=True):
         csv_df.to_csv(path_, index=False, header=False)
         ds_csv_file = path_.split("/")[-1]
         print(f"{label} dataset (csv) written to {ds_csv_file}")
+
+    # Save train splits to `csv` files
+    for sp in SPLITS:
+        lst = train[:sp]
+        lst.insert(0, ["train", "summary"])
+        csv_df = pd.DataFrame(lst)
+
+        path_ = path + "train_" + str(sp) + ".csv"
+        csv_df.to_csv(path_, index=False, header=False)
+        ds_csv_file = path_.split("/")[-1]
+        print(f"train (split {sp}) dataset (csv) written to {ds_csv_file}")
 
 
 if __name__ == '__main__':

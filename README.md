@@ -12,6 +12,10 @@ Code base for attribute generation project
     * `items_ins_v2.json`
 4. Create a `data` folder at the root of the repository, then place the above files into the directory
 
-To generate the synthetic dataset, run `python syn-data-gen/gen-data.py`. This generates an `attr_gen_dataset.json` file in the `data` folder.
+To generate the synthetic dataset, run `python syn-data-gen/gen-data.py`. This generates the following files in the `data/attr-gen-data/` folder.
+* `attr_gen_dataset.json`: Entire 10000 dataset of [product info -> attributes]
+* `attr_gen_dataset_train_{size}.csv`: Training data splits of size [50, 200, 500, 2000, 5000]
+* `attr_gen_dataset_valid.json`: Validation data (1000 rows)
+* `attr_gen_dataset.test.json`: Test data (1000 rows)
 
-To run the summarization model, run `./model/run_model.sh`. Model based on Hf summarization module, found [here](https://github.com/huggingface/transformers/tree/main/examples/pytorch/summarization).
+To run the summarization model, submit the slurm job to the compute cluster via `sb run.slurm`. Model based on Hf summarization module, found [here](https://github.com/huggingface/transformers/tree/main/examples/pytorch/summarization).

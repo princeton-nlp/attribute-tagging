@@ -1,7 +1,6 @@
 *.ipynb*
 *.out
 
-log.txt
-
 __pycache__/
 data/
+logs/
