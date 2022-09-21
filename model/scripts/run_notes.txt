@@ -1,0 +1,19 @@
+t5-large
+--------
+* [node006] batch_size=1, acc=08 -> Cuda out of memory
+* [node006] batch_size=1, acc=32 -> Cuda out of memory
+* [node006] batch_size=4, acc=08 -> Cuda out of memory
+* [node006] batch_size=1, acc=32; [fp16, ckpt] -> Cuda out of memory
+
+t5-large + no trainer
+--------
+* 
+
+t5-large + no trainer + accelerate
+--------
+* 
+
+general
+--------
+* `accelerate config` output saved to ~/.cache/huggingface/accelerate
+* Interactive Mode: gonode --gres=gpu:1 --mem=16G

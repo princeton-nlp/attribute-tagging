@@ -19,7 +19,7 @@ DEFAULT_REVIEW_PATH = join(BASE_DIR, '../data/reviews.json')
 HUMAN_ATTR_PATH = join(BASE_DIR, '../data/items_human_ins.json')
 
 # Training Data Splits (Check Fine Tuning rate)
-SPLITS = [50, 200, 500, 2000, 5000]
+SPLITS = [50, 200, 500, 1000, 2000, 3000, 4000, 5000, 6500]
 
 
 def generate_product_prices(all_products):
