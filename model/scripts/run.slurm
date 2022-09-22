@@ -50,7 +50,6 @@ for model in 't5-small'; do
             --per_device_eval_batch_size 8 \
             --per_device_train_batch_size 8 \
             --gradient_accumulation_steps 4 \
-            --outfile $BASE_DIR/attr-gen/model/scripts/vanilla.out \
             > $BASE_DIR/attr-gen/model/logs/${model}/stdout/log${size}.txt
     done;
 done;
