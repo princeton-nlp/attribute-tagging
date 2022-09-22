@@ -1,6 +1,5 @@
 #!/bin/bash -l
 
-# Set Job Name
 #SBATCH --job-name=lrg
 #SBATCH -N 1 #nodes
 #SBATCH -n 1 #tasks

@@ -1,17 +1,17 @@
 #!/bin/bash -l
 
-# Constants
-BASE_DIR=/n/fs/nlp-jy1682
-
 #SBATCH --job-name=vanilla
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32G
-#SBATCH --time=1:00:00
+#SBATCH --time=1-0:00:00
 #SBATCH --gres=gpu:1
 #SBATCH -x node[009-016],node[030-031],node[200-201],node[914]
 #SBATCH --mail-user=jy1682@princeton.edu
+
+# Constants
+BASE_DIR=/n/fs/nlp-jy1682
 
 # Set conda environment
 set -- source $BASE_DIR/miniconda3/bin/activate;
@@ -33,7 +33,7 @@ for model in 't5-small'; do
         echo "Beginning work on dataset w/ size ${size}";
 
         # Create log file name
-        rm $BASE_DIR/attr-gen/model/logs/${model}/predictions/log${size}.txt;
+        rm    $BASE_DIR/attr-gen/model/logs/${model}/predictions/log${size}.txt;
         touch $BASE_DIR/attr-gen/model/logs/${model}/predictions/log${size}.txt;
 
         # Run job
