@@ -54,6 +54,7 @@ from transformers import (
 from transformers.utils import check_min_version, get_full_repo_name, is_offline_mode, send_example_telemetry
 from transformers.utils.versions import require_version
 
+from gpu_stats import print_gpu_usage
 
 # Will error if the minimal version of Transformers is not installed. Remove at your own risks.
 check_min_version("4.23.0.dev0")
@@ -438,6 +439,8 @@ def main():
     else:
         logger.info("Training new model from scratch")
         model = AutoModelForSeq2SeqLM.from_config(config)
+    
+    print_gpu_usage()
 
     model.resize_token_embeddings(len(tokenizer))
     if model.config.decoder_start_token_id is None:
@@ -707,6 +710,14 @@ def main():
                     else:
                         samples_seen += len(decoded_labels)
 
+                # Save predictions, labels to custom file for evaluation
+                size_t = data_args.train_file.split("_")[-1][:-4]
+                out_file_name = f"/n/fs/nlp-jy1682/attr-gen/model/logs/{model_args.model_name_or_path}/predictions/log_{size_t}.txt"
+                print(f"Writing predictions, labels to output file {out_file_name}")
+                with open(out_file_name, "w") as myfile:
+                    myfile.write("PREDICTIONS:\n" + "\n".join(decoded_preds) + "\n")
+                    myfile.write("LABELS:\n" + "\n".join(decoded_labels))
+                
                 metric.add_batch(
                     predictions=decoded_preds,
                     references=decoded_labels,

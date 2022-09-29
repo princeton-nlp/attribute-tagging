@@ -29,7 +29,7 @@ for model in 't5-small'; do
     mkdir -p $BASE_DIR/attr-gen/model/logs/${model}/predictions/;
 
     # '_50' '_200' '_500' '_1000' '_2000' '_3000' '_4000' '_5000' '_6500' '_full'
-    for size in '_50'; do
+    for size in '_50' '_200' '_500' '_1000' '_2000' '_3000' '_4000' '_5000' '_6500' '_full'; do
         echo "Beginning work on dataset w/ size ${size}";
 
         # Create log file name

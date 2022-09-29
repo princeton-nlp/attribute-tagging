@@ -50,6 +50,7 @@ from transformers.trainer_utils import get_last_checkpoint
 from transformers.utils import check_min_version, is_offline_mode, send_example_telemetry
 from transformers.utils.versions import require_version
 
+from gpu_stats import print_gpu_usage
 
 # Will error if the minimal version of Transformers is not installed. Remove at your own risks.
 check_min_version("4.22.0.dev0")
@@ -421,6 +422,7 @@ def main():
         revision=model_args.model_revision,
         use_auth_token=True if model_args.use_auth_token else None,
     )
+    print_gpu_usage()
 
     model.resize_token_embeddings(len(tokenizer))
 
@@ -623,6 +625,14 @@ def main():
 
         # Some simple post-processing
         decoded_preds, decoded_labels = postprocess_text(decoded_preds, decoded_labels)
+        
+        # Save predictions, labels to custom file for evaluation
+        size_t = data_args.train_file.split("_")[-1][:-4]
+        out_file_name = f"/n/fs/nlp-jy1682/attr-gen/model/logs/{model_args.model_name_or_path}/predictions/log_{size_t}.txt"
+        print(f"Writing predictions, labels to output file {out_file_name}")
+        with open(out_file_name, "w") as myfile:
+            myfile.write("PREDICTIONS:\n" + "\n".join(decoded_preds) + "\n")
+            myfile.write("LABELS:\n" + "\n".join(decoded_labels))
 
         result = metric.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True)
         result = {k: round(v * 100, 4) for k, v in result.items()}

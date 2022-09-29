@@ -1,0 +1,145 @@
+09/21/2022 01:12:40 - WARNING - __main__ - Process rank: -1, device: cuda:0, n_gpu: 1distributed training: False, 16-bits training: False
+09/21/2022 01:12:40 - INFO - __main__ - Training/evaluation parameters Seq2SeqTrainingArguments(
+_n_gpu=1,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=None,
+evaluation_strategy=no,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+generation_max_length=None,
+generation_num_beams=None,
+gradient_accumulation_steps=4,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=5e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=-1,
+log_level=-1,
+log_level_replica=-1,
+log_on_each_node=True,
+logging_dir=/n/fs/nlp-jy1682/tmp/tst-summarization/runs/Sep21_01-12-39_node901.ionic.cs.princeton.edu,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=adamw_hf,
+output_dir=/n/fs/nlp-jy1682/tmp/tst-summarization,
+overwrite_output_dir=True,
+past_index=-1,
+per_device_eval_batch_size=2,
+per_device_train_batch_size=2,
+predict_with_generate=True,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+resume_from_checkpoint=None,
+run_name=/n/fs/nlp-jy1682/tmp/tst-summarization,
+save_on_each_node=False,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+sharded_ddp=[],
+skip_memory_metrics=True,
+sortish_sampler=False,
+tf32=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+xpu_backend=None,
+)
+09/21/2022 01:12:40 - WARNING - datasets.builder - Using custom data configuration default-f5cc1e80ce3a9ac4
+09/21/2022 01:12:40 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+09/21/2022 01:12:40 - INFO - datasets.info - Loading Dataset info from /n/fs/nlp-jy1682/hf_datasets/csv/default-f5cc1e80ce3a9ac4/0.0.0/652c3096f041ee27b04d2232d41f10547a8fecda3e284a79a0ec4053c916ef7a
+09/21/2022 01:12:40 - WARNING - datasets.builder - Reusing dataset csv (/n/fs/nlp-jy1682/hf_datasets/csv/default-f5cc1e80ce3a9ac4/0.0.0/652c3096f041ee27b04d2232d41f10547a8fecda3e284a79a0ec4053c916ef7a)
+09/21/2022 01:12:40 - INFO - datasets.info - Loading Dataset info from /n/fs/nlp-jy1682/hf_datasets/csv/default-f5cc1e80ce3a9ac4/0.0.0/652c3096f041ee27b04d2232d41f10547a8fecda3e284a79a0ec4053c916ef7a
+===== GPU Utilization =====
+GPU 0
+- Used:           0.24 B (2.2%)
+- Available:     10.76 B (97.8%)
+- Total:         11.00 B
+===========================
+09/21/2022 01:12:42 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /n/fs/nlp-jy1682/hf_datasets/csv/default-f5cc1e80ce3a9ac4/0.0.0/652c3096f041ee27b04d2232d41f10547a8fecda3e284a79a0ec4053c916ef7a/cache-36355e706e3a2204.arrow
+09/21/2022 01:12:43 - INFO - datasets.arrow_dataset - Caching processed dataset at /n/fs/nlp-jy1682/hf_datasets/csv/default-f5cc1e80ce3a9ac4/0.0.0/652c3096f041ee27b04d2232d41f10547a8fecda3e284a79a0ec4053c916ef7a/cache-b04212d781c2f8b0.arrow
+{'loss': 1.9988, 'learning_rate': 3.3333333333333335e-05, 'epoch': 1.0}
+{'loss': 1.3536, 'learning_rate': 1.6666666666666667e-05, 'epoch': 2.0}
+{'loss': 1.2366, 'learning_rate': 0.0, 'epoch': 3.0}
+{'train_runtime': 410.8873, 'train_samples_per_second': 29.205, 'train_steps_per_second': 3.651, 'train_loss': 1.5296982828776042, 'epoch': 3.0}
+***** train metrics *****
+  epoch                    =        3.0
+  train_loss               =     1.5297
+  train_runtime            = 0:06:50.88
+  train_samples            =       4000
+  train_samples_per_second =     29.205
+  train_steps_per_second   =      3.651
+09/21/2022 01:19:39 - INFO - __main__ - *** Evaluate ***
+Writing predictions, labels to output file logs/t5-small/predictions/log_4000.txt
+***** eval metrics *****
+  epoch                   =        3.0
+  eval_gen_len            =     19.152
+  eval_loss               =      1.039
+  eval_rouge1             =    48.6621
+  eval_rouge2             =    30.6254
+  eval_rougeL             =    44.8062
+  eval_rougeLsum          =     44.794
+  eval_runtime            = 0:01:34.53
+  eval_samples            =       1000
+  eval_samples_per_second =     10.578
+  eval_steps_per_second   =      5.289
