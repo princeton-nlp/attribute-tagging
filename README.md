@@ -2,7 +2,7 @@
 
 Implementation of the attribute tagging pipeline for the paper:
 
-**[Towards an Enhanced, Faithful, and Adaptable Web Interaction Environment]()**  
+**[Towards an Enhanced, Faithful, and Adaptable Web Interaction Environment](https://openreview.net/pdf?id=y-F1kab2Its)**  
 [John Yang](https://john-b-yang.github.io/), [Howard Chen](https://howard50b.github.io/), [Karthik Narasimhan](https://www.cs.princeton.edu/~karthikn/)
 
 This repository contains code for reproducing the paper's results.
